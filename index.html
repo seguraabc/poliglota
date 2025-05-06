@@ -151,7 +151,7 @@
     let recognition;
     let isListening = false;
     const translationCache = {};
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbxDeK6nCRfY4wCanumvGXn5SjtROxCbmhL6RGG0XNqjVWkZ8cPtxdcxD5OSBTRP1y7T/exec'; // Reemplazar con tu URL de GAS
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbyYiUrdf_-eDDfUp_wTBAnvFav06YjP9WL6DZ-JZqQnVC4cg1qH7bMGQQYbKjckbJOI/exec';
 
     // Inicializar reconocimiento de voz
     function initSpeechRecognition() {
@@ -198,7 +198,11 @@
         // Traducir texto
         const response = await fetch(GAS_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'cors',
+          headers: { 
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
           body: JSON.stringify({ text, targetLang })
         });
 
